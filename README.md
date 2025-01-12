@@ -1,26 +1,70 @@
-# Bellman-Ford Algorithm
+# Pathfinder — Graph Shortest-Path Visualiser
 
-Bellman-Ford Algorithm computes the single-source shortest path from a source node to all other nodes in a graph that 
-can contain negative edge weights. However, if a graph contains a negative weight cycle, the solution to the shortest 
-path will not be produced. This algorithm is also used to detect the presence of negative weight cycle in a graph.
+An interactive desktop tool for visualising Dijkstra's and BFS shortest-path algorithms on weighted graphs, built with Python and Tkinter.
 
-<div align="center">
-   <img src="images/bellman.webp" alt="bellman" >
-</div>
+## Features
 
-## How Bellman-Ford Algorithm works?
-This algorithm overestimates the distance from the source node to all other nodes in a graph initially. 
-Then repeatedly visited all the edges and relax the estimate when a new shorter path is discovered in each iteration. 
-If an iteration is not resulted in an update, we can stop the algorithm because the shortest path has been found. 
-Otherwise, iterate all the edges at most n-1 times(n is the total number of nodes/vertices) since n-1 is the maximum 
-length of the shortest path could take. If a graph has no negative cycle, we are guarantee to find the optimized result
-after n-1 iterations.
+- Build graphs interactively — add nodes and weighted edges on a canvas
+- Choose between **Dijkstra's algorithm** (weighted graphs) and **BFS** (unweighted graphs)
+- Step-by-step animation mode
+- Path highlighting with total cost display
+- Save and load graphs as JSON files
+- Preset example graphs for quick demos
+- Disconnected graph detection with a user-friendly message
 
-## Why Iterate (n-1) times in Bellman-Ford Algorithm?
-In Bellman-Ford Algorithm, we can iterate all the edges in any order and relax them. For the same graph, 
-when we consider all the edges in different orders, we may get the optimized results after less than n-1 iterations 
-or , in the worst case, need at most n-1 iterations to produces the shortest path .
+## Stack
 
-## Complexity
-* Time: O(v*e), Space: O(v)
-    > v: the total number of vertices, e: the total number of edges
+| Layer | Technology |
+|---|---|
+| Language | Python 3.11+ |
+| GUI | Tkinter |
+| Dependencies | Standard library only |
+
+## Getting Started
+
+```bash
+git clone https://github.com/starpearl03/pathfinder-gui
+cd pathfinder-gui
+python src/main.py
+```
+
+## Usage
+
+1. Click the canvas to add nodes
+2. Select two nodes and enter a weight to add an edge
+3. Choose source and target nodes from the dropdowns
+4. Select algorithm (Dijkstra / BFS) and click **Find Path**
+5. Use **Step** for animation or **Run** to see the full result at once
+
+## Project Structure
+
+```
+src/
+├── algorithm.py   # Dijkstra and BFS implementations
+├── canvas.py      # Drawing helpers (nodes, edges, path highlight)
+├── graph.py       # Weighted adjacency-list graph data structure
+├── gui.py         # Main application window and event handling
+├── io.py          # JSON graph save / load
+└── state.py       # Application state dataclass
+tests/
+├── test_algorithm.py
+└── test_graph.py
+```
+
+## Configuration
+
+Copy `.env.example` and adjust display settings:
+
+```bash
+cp .env.example .env
+```
+
+| Variable | Default | Description |
+|---|---|---|
+| `APP_WIDTH` | 800 | Canvas width in pixels |
+| `APP_HEIGHT` | 600 | Canvas height in pixels |
+| `DEFAULT_GRAPH` | none | Path to a graph JSON to load on startup |
+
+## Author
+
+Felistas V. Charuka · [github.com/starpearl03](https://github.com/starpearl03)

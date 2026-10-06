@@ -98,6 +98,3 @@ button.grid(row=3, column=0, sticky="news", padx=20, pady=20)
 
 
 window.mainloop()
-
-
-
